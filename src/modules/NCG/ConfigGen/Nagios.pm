@@ -1291,6 +1291,7 @@ sub _genNativeService {
     my $pnp = shift || "";
     my $command = shift;
     my $customVarsStr = "";
+    my $servID = shift;
 
     if ($docUrl) {
         $docUrl = "notes_url                      $docUrl";
@@ -1311,7 +1312,7 @@ sub _genNativeService {
     $line =~ s/<hostname>/$hostname/mg;
     $line =~ s/<servicegroup>/$servicegroup/mg;
     $line =~ s/<metric>/$metric/mg;
-    $line =~ s/<metricName>/$metricName/mg;
+    $line =~ s/<metricName>/$metricName-$servID/mg;
     $line =~ s/<contactlist>/$contactlist/mg;
     $line =~ s/<probe>/$probe/mg;
     $line =~ s/<options>/$options/mg;
@@ -1512,6 +1513,7 @@ sub _genNativeServices {
     my $voFqan = shift;
     my $voRemovedMetrics = shift;
     my $gridProxyServer = shift;
+    my $id = shift;
     my $metricName = $metric;
     my $nrpecommand = $host . "_" . $metric;
     my $sitename = $self->{SITEDB}->siteName();
@@ -1631,7 +1633,8 @@ sub _genNativeServices {
                                         $custom,
                                         $metricDocUrl,
                                         $metricPNP,
-                                        $command) ) {
+                                        $command,
+                                        $id) ) {
                 return;
             }
         }
@@ -1755,7 +1758,6 @@ sub _genServices {
 
             my $custom = {};
             $custom->{"_site_name"} = $sitename;
-            $custom->{"_metric_name"} = $metric;
             $custom->{"_service_uri"} = $metricServiceURI;
             $custom->{"_service_flavour"} = $serviceType;
             $custom->{"_grid"} = $grids if ($grids);
@@ -1784,6 +1786,7 @@ sub _genServices {
                         my $options = $self->_getMetricOptionString($host, $srv, $srvid, $metric);
                         my $metricSgroupLocal = $metricSgroup;
                         $self->verbose ("    metric: $metric");
+                        $custom->{"_metric_name"} = $metric."-".$srvid;
                         if ($self->_genNativeServices (
                                         $CONFIG,
                                         $NRPE_CONFIG,
@@ -1808,7 +1811,8 @@ sub _genServices {
                                         "",
                                         "",
                                         "",
-                                        ""
+                                        "",
+                                        $srvid
                                         ) ) {
                                  $metricCount++;
                          } else {

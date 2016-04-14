@@ -62,15 +62,9 @@ sub addHost
             $self->{HOSTS}->{$hostname}->{ADDRESS} = join ('.', unpack('C4', $addrs[0]));
         }
     }
+
 }
 
-#sub addServiceID
-#{
-#   my $self = shift;
-#
-#   $self->debugSub(@_);
-#
-   
 sub addService
 {
     my $self = shift;
