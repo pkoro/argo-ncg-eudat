@@ -160,7 +160,7 @@ sub getData {
                         my $v_child = $v_item->getFirstChild;
                         my $v_value = $v_child->getNodeValue();
                         if ($k_value) {
-                            $self->{SITEDB}->hostAttribute($hostname, $serviceType."_".uc$k_value, $v_value);
+                            $self->{SITEDB}->hostAttribute($hostname, $serviceType, $endpointID, $serviceType."_".uc$k_value, $v_value);
                             print "Found extension: $serviceType\.$k_value for host: $hostname \n";
                         }
                     }
