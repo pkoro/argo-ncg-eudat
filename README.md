@@ -1,22 +1,18 @@
-#
-# README
-#
-#
+argo-ncg-eudat
+==============
 
-README
-======
 This package contains the Nagios specific configuration generator for 
 the Nagios Grid Service Monitor.
 
-For details on the Nagios Grid Service Monitor, and the specifications
-involved, please see the EGEE OAT Twiki:
-  https://twiki.cern.ch/twiki/bin/view/EGEE/OAT_EGEE_III
 
 Usage
 =====
-nagios-host$ ncg.pl --help
 
-Nagios configuration generator (WLCG probe based)
+```sh
+$ ncg.pl --help
+```
+
+Nagios configuration generator
 
     Options:
         --config STRING
@@ -35,14 +31,9 @@ Nagios configuration generator (WLCG probe based)
             Print detailed program execution flow
 
 For detailed information on config file check perldoc of individual module. For example:
- perldoc /usr/lib/perl5/vendor_perl/5.8.5/NCG/ConfigGen/Nagios.pm
+
+    perldoc /usr/lib/perl5/vendor_perl/5.8.5/NCG/ConfigGen/Nagios.pm
 
 Variables are described in section "new".
 
-Support Details
-===============
-Support problems and requests can be submitted through LCG Savannah:
-  https://savannah.cern.ch/projects/sa1tools/
 
-Also join the mail discussion list wlcg-monitoring-discuss@cern.ch:
-  https://websvc03.cern.ch/listboxservices/simba2/free/subscription.aspx

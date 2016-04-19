@@ -6,7 +6,7 @@
 Summary: WLCG monitoring configuration generator
 Name: argo-ncg-eudat
 Version: 0.96.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: ASL 2.0
 Group: Network/Monitoring
 Source0: %{name}-%{version}.tar.gz
@@ -26,13 +26,6 @@ Provides: perl(NCG::LocalMetrics::Hash_local)
 %install
 rm -rf $RPM_BUILD_ROOT
 
-#
-# Docs
-#
-install --directory $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
-install   CHANGES $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
-install   README $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
-install   INSTALL $RPM_BUILD_ROOT%{_datadir}/doc/%{name}-%{version}
 #
 # App
 #
@@ -160,9 +153,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/nagios/unicore/log4j-uvosclc-debug.properties
 /etc/nagios/unicore/UNICORE_Job.u
 %{configdir}/check_logfiles_ncg.conf
-%doc %{_datadir}/doc/%{name}-%{version}/CHANGES
-%doc %{_datadir}/doc/%{name}-%{version}/INSTALL
-%doc %{_datadir}/doc/%{name}-%{version}/README
 %{_sbindir}/ncg.pl
 %{_sbindir}/ncg.reload.sh
 /usr/libexec/hashlocal-to-json.pl
